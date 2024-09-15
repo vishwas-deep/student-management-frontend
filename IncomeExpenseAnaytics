@@ -1,0 +1,41 @@
+const incomeExpenseData = {
+  expenses: [
+    {
+      month: '2024-01',
+      totalSalaries: 20000, // Total salaries paid in January 2024
+    },
+    {
+      month: '2024-02',
+      totalSalaries: 22000, // Total salaries paid in February 2024
+    },
+    // More months or yearly data
+  ],
+  income: [
+    {
+      month: '2024-01',
+      totalFees: 50000, // Total fees collected in January 2024
+    },
+    {
+      month: '2024-02',
+      totalFees: 48000, // Total fees collected in February 2024
+    },
+    // More months or yearly data
+  ],
+};
+
+// Example Monthly Data Breakdown
+// For monthly view:
+
+const monthlyIncomeExpenseData = {
+  month: '2024-01',
+  totalSalaries: 20000,  // Total teacher salaries for January 2024
+  totalFees: 50000,      // Total student fees collected in January 2024
+};
+// Example Yearly Data Breakdown
+// For yearly view:
+
+const yearlyIncomeExpenseData = {
+  year: '2024',
+  totalSalaries: 240000,  // Total teacher salaries for the year 2024
+  totalFees: 600000,      // Total student fees collected in the year 2024
+};
