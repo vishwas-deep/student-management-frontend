@@ -1,108 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from './common/Form';
 import Table from './common/Table';
 import { useNavigate } from 'react-router-dom';
 import Header from './common/Header';
 import InputField from './common/InputField';
+import axios from 'axios';
 
 const ClassManagement = () => {
   // Dummy class data
-  const [classes, setClasses] = useState([
-    {
-      className: 'Class 1',
-      year: 2023,
-      teacher: 'Mr. Smith',
-      fees: 1000,
-      students: ['John', 'Alice', 'Bob']
-    },
-    {
-      className: 'Class 2',
-      year: 2023,
-      teacher: 'Ms. Johnson',
-      fees: 1500,
-      students: ['Steve', 'Mark', 'Sarah']
-    },
-    {
-      className: 'Class 3',
-      year: 2023,
-      teacher: 'Mrs. Brown',
-      fees: 1200,
-      students: ['Emily', 'Daniel', 'Sophia']
-    },
-    {
-      className: 'Class 4',
-      year: 2023,
-      teacher: 'Mr. White',
-      fees: 1300,
-      students: ['Liam', 'Olivia', 'James']
-    },
-    {
-      className: 'Class 5',
-      year: 2023,
-      teacher: 'Ms. Davis',
-      fees: 1400,
-      students: ['Benjamin', 'Chloe', 'Lucas']
-    },
-    {
-      className: 'Class 6',
-      year: 2023,
-      teacher: 'Mr. Wilson',
-      fees: 1500,
-      students: ['Mason', 'Ella', 'Henry']
-    },
-    {
-      className: 'Class 7',
-      year: 2023,
-      teacher: 'Mrs. Martinez',
-      fees: 1600,
-      students: ['Harper', 'Elijah', 'Isabella']
-    },
-    {
-      className: 'Class 8',
-      year: 2023,
-      teacher: 'Mr. Anderson',
-      fees: 1700,
-      students: ['Michael', 'Mia', 'David']
-    },
-    {
-      className: 'Class 9',
-      year: 2023,
-      teacher: 'Ms. Thompson',
-      fees: 1800,
-      students: ['Aiden', 'Emma', 'Noah']
-    },
-    {
-      className: 'Class 10',
-      year: 2023,
-      teacher: 'Mr. Johnson',
-      fees: 1900,
-      students: ['Sophia', 'Lucas', 'Grace']
-    },
-    {
-      className: 'Class 11',
-      year: 2023,
-      teacher: 'Mrs. Clark',
-      fees: 2000,
-      students: ['Olivia', 'Samuel', 'Ethan']
-    },
-    {
-      className: 'Class 12',
-      year: 2023,
-      teacher: 'Mr. Scott',
-      fees: 2100,
-      students: ['Ava', 'Jackson', 'Zoe']
-    }
-  ]);
+  const [classes, setClasses] = useState([]);
+  const [teachers, setTeachers] = useState([]); // New state for teachers
 
   const [searchQuery, setSearchQuery] = useState(''); // New state for search query
 
   const [currentPage, setCurrentPage] = useState(1);
   const classesPerPage = 5;
 
+  useEffect(() => {
+    // Fetch data from the server
+    axios.get('http://localhost:5000/api/classes')
+      .then(response => {
+        setClasses(response.data);
+      })
+      .catch(error => {
+        console.error('Error fetching data:', error);
+      });
+
+    // Fetch teacher data from the server
+    axios.get('http://localhost:5000/api/teachers')
+      .then(response => {
+        setTeachers(response.data); // Set the fetched teacher data
+      })
+      .catch(error => {
+        console.error('Error fetching teacher data:', error);
+      });
+  }, []);
+
   // Filter classes based on the search query
   const filteredClasses = classes.filter((cls) =>
     cls.teacher.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    cls.students.some((student) => student.toLowerCase().includes(searchQuery.toLowerCase()))
+    cls.className.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   // Calculate the number of pages based on filtered data
@@ -115,18 +52,32 @@ const ClassManagement = () => {
   // Slice the filtered class data to get only the current page's classes
   const currentClasses = filteredClasses.slice(startIndex, endIndex);
 
-
   // Form fields for class details
   const classFields = [
-    { name: 'className', label: 'Select Class', type: 'select', options: classes.map(cls => cls.className) },
+    { name: 'className', label: 'Select Class', type: 'select', options: Array.from({ length: 12 }, (_, i) => `Class ${i + 1}`) },
     { name: 'year', label: 'Select Year', type: 'select', options: Array.from({ length: 10 }, (_, i) => new Date().getFullYear() - i) },
-    { name: 'teacher', label: 'Teacher Name', type: 'text' },
-    { name: 'fees', label: 'Student Fees', type: 'number' },
-    { name: 'students', label: 'Student List (Comma Separated)', type: 'text' }
+    { name: 'teacher', label: 'Assigned Teacher', type: 'select', options: teachers.map(teacher => teacher.name) },
+    { name: 'studentFees', label: 'Student Fees', type: 'number' },
   ];
 
   const handleFormSubmit = (data) => {
-    setClasses([data, ...classes]);
+    axios.post('http://localhost:5000/api/classes', data)
+      .then(response => {
+        setClasses([response.data, ...classes]);
+      })
+      .catch(error => {
+        console.error('Error adding class:', error);
+      });
+  };
+
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:5000/api/classes/${id}`)
+      .then(() => {
+        setClasses(classes.filter(cls => cls._id !== id));
+      })
+      .catch(error => {
+        console.error('Error deleting class:', error);
+      });
   };
 
   const navigate = useNavigate();
@@ -145,10 +96,6 @@ const ClassManagement = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
-  };
-
-  const handleDelete = (index) => {
-    setClasses(classes.filter((_, i) => i !== index));
   };
 
   const sortData = (key, direction) => {
@@ -174,14 +121,14 @@ const ClassManagement = () => {
         <div className="flex-grow bg-white shadow-md rounded-lg p-6">
           <h2 className="text-2xl font-bold mb-4">Class Data</h2>
           <InputField
-            label="Search by class name"
+            label="Search by class name or teacher's name"
             type="text"
             name="search"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
           <Table
-            columns={['className', 'year', 'teacher', 'fees', 'students']}
+            columns={['className', 'year', 'teacher', 'studentFees']}
             data={currentClasses}
             onDelete={handleDelete}
             sortData={sortData}
@@ -207,7 +154,7 @@ const ClassManagement = () => {
           </div>
         </div>
       </div>
-    </div>  
+    </div>
   );
 };
 

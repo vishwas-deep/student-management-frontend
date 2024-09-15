@@ -30,17 +30,6 @@ const Dashboard = ({ role }) => {
           <div className="space-y-6">
             {/* First Row */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
-              {/* Class Management Card */}
-              <div
-                onClick={() => navigate('/admin/class-management')}
-                className="bg-white shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
-              >
-                <div className="flex justify-center mb-4">
-                  <FaBookOpenReader style={{ width: '5rem', height: '5rem' }} />
-                </div>
-                <h3 className="text-lg font-semibold text-gray-700 mb-2">Manage Classes</h3>
-                <p className="text-gray-500">Create, update, or view classes</p>
-              </div>
 
               {/* Teacher Management Card */}
               <div
@@ -52,6 +41,18 @@ const Dashboard = ({ role }) => {
                 </div>
                 <h3 className="text-lg font-semibold text-gray-700 mb-2">Manage Teachers</h3>
                 <p className="text-gray-500">Add, update, or remove teachers</p>
+              </div>
+
+              {/* Class Management Card */}
+              <div
+                onClick={() => navigate('/admin/class-management')}
+                className="bg-white shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
+              >
+                <div className="flex justify-center mb-4">
+                  <FaBookOpenReader style={{ width: '5rem', height: '5rem' }} />
+                </div>
+                <h3 className="text-lg font-semibold text-gray-700 mb-2">Manage Classes</h3>
+                <p className="text-gray-500">Create, update, or view classes</p>
               </div>
 
               {/* Student Management Card */}
@@ -75,7 +76,7 @@ const Dashboard = ({ role }) => {
                 className="bg-white shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
               >
                 <div className="flex justify-center mb-4">
-                  <TbDeviceAnalytics style={{ width: '5rem', height: '5rem' }}/>
+                  <TbDeviceAnalytics style={{ width: '5rem', height: '5rem' }} />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-700 mb-2">View Income/Expense Analytics</h3>
                 <p className="text-gray-500">Analyze financial reports</p>
@@ -87,7 +88,7 @@ const Dashboard = ({ role }) => {
                 className="bg-white shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
               >
                 <div className="flex justify-center mb-4">
-                  <DiGoogleAnalytics style={{ width: '5rem', height: '5rem' }}/>
+                  <DiGoogleAnalytics style={{ width: '5rem', height: '5rem' }} />
                 </div>
                 <h3 className="text-lg font-semibold text-gray-700 mb-2">View Student Analytics</h3>
                 <p className="text-gray-500">Analyze student demographics</p>

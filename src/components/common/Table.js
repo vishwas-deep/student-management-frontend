@@ -3,7 +3,6 @@ import { FaSortDown, FaSortUp, FaSort } from "react-icons/fa6";
 
 const Table = ({ columns, data, onDelete, sortData }) => {
 
-  console.log(columns, 'columns', data, 'data', 'tablee..............')
   const [sortConfig, setSortConfig] = useState({ key: '', direction: 'asc' });
 
   const requestSort = (key) => {
@@ -69,7 +68,7 @@ const Table = ({ columns, data, onDelete, sortData }) => {
               ))}
               <td className="py-2 px-4 border-b">
                 <button
-                  onClick={() => onDelete(index)}
+                  onClick={() => onDelete(item._id)}
                   className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
                 >
                   Delete
