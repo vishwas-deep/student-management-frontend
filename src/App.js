@@ -13,27 +13,37 @@ import ClassManagement from './components/ClassManagement';
 import StudentManagement from './components/student/StudentManagement';
 import TeacherManagement from './components/teacher/TeacherManagement';
 import StudentAnalyticsCard from './components/StudentAnalytics';
+import { AuthProvider } from './context/AuthContext';
+import ProtectedRoute from './components/ProtectedRoute'; // Import ProtectedRoute
 
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<RoleSelection />} />
-        <Route path="/login/:role" element={<Login />} />
-        <Route path="/admin-dashboard" element={<Dashboard role="admin" />} />
-        <Route path="/student-dashboard" element={<Dashboard role="student" />} />
-        <Route path="/teacher-dashboard" element={<Dashboard role="teacher" />} />
-        <Route path="/admin-profile" element={<Profile role="admin" data={AdminProfileData} />} />
-        <Route path="/student-profile" element={<Profile role="student" data={StudentProfileData} />} />
-        <Route path="/teacher-profile" element={<Profile role="teacher" data={TeacherProfileData} />} />
-        <Route path="/admin/class-management" element={<ClassManagement />} />
-        <Route path="/admin/teacher-management" element={<TeacherManagement />} />
-        <Route path="/admin/student-management" element={<StudentManagement />} />
-        <Route path="/admin/class-analytics/:id" element={<ClassAnalytics />} />
-        <Route path="/admin/income-expense-analytics" element={<IncomeExpenseAnalytics />} />
-        <Route path="/admin/student-analytics" element={<StudentAnalyticsCard />} />
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<RoleSelection />} />
+          <Route path="/login/:role" element={<Login />} />
+          
+          {/* Protected routes */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="/admin-dashboard" element={<Dashboard role="admin" />} />
+            <Route path="/student-dashboard" element={<Dashboard role="student" />} />
+            <Route path="/teacher-dashboard" element={<Dashboard role="teacher" />} />
+            <Route path="/admin-profile" element={<Profile role="admin" data={AdminProfileData} />} />
+            <Route path="/student-profile" element={<Profile role="student" data={StudentProfileData} />} />
+            <Route path="/teacher-profile" element={<Profile role="teacher" data={TeacherProfileData} />} />
+            <Route path="/admin/class-management" element={<ClassManagement />} />
+            <Route path="/admin/teacher-management" element={<TeacherManagement />} />
+            <Route path="/admin/student-management" element={<StudentManagement />} />
+            <Route path="/admin/class-analytics/:id" element={<ClassAnalytics />} />
+            <Route path="/admin/income-expense-analytics" element={<IncomeExpenseAnalytics />} />
+            <Route path="/admin/student-analytics" element={<StudentAnalyticsCard />} />
+          </Route>
 
-      </Routes>
+          {/* Catch-all route for unknown URLs */}
+          <Route path="*" element={<ProtectedRoute />} />
+        </Routes>
+      </AuthProvider>
     </Router>
   );
 }
