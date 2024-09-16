@@ -107,12 +107,12 @@ const TeacherManagement = () => {
       <div className="p-6 flex flex-col lg:flex-row gap-6">
         <div className="flex-none lg:w-1/4 bg-white shadow-md rounded-lg p-6">
           {/* Heading for the form */}
-          <h2 className="text-2xl font-bold mb-4">Build Teacher's Profile</h2>
+          <h5 className="font-bold mb-4 text-slate-600">Build Teacher's Profile</h5>
           <Form model="teacher" fields={teacherFields} onSubmit={handleFormSubmit} />
         </div>
         <div className="flex-grow bg-white shadow-md rounded-lg p-6">
           {/* Heading for the table */}
-          <h2 className="text-2xl font-bold mb-4">Teacher's Data</h2>
+          <h5 className="text-slate-600 font-bold mb-4">Teacher's Data</h5>
           {/* Search Input */}
           <InputField
             label="Search by teacher's name"

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import InputField from './InputField';
 import AdminSignup from '../admin/AdminSignup';
-
+import {credentials} from '../../Credentials';
+ 
 const Login = () => {
   const { role } = useParams(); // Get the role (admin, student, teacher) from the URL
   const [username, setUsername] = useState('');
@@ -10,13 +11,6 @@ const Login = () => {
   const [isSignUp, setIsSignUp] = useState(false); // Toggle state between login and signup
   const navigate = useNavigate(); // For redirection
   const [errorMessage, setErrorMessage] = useState(''); // State for error message
-
-  // Define credentials for each role
-  const credentials = {
-    admin: { username: 'admin@school.com', password: 'admin' },
-    student: { username: 'student@school.com', password: 'student' },
-    teacher: { username: 'teacher@school.com', password: 'teacher' },
-  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -84,13 +78,19 @@ const Login = () => {
                 <InputField
                   label="Username"
                   value={username}
-                  onChange={(e) => setUsername(e.target.value)}
+                  onChange={(e) => {
+                    setErrorMessage('');
+                    setUsername(e.target.value);
+                  }}
                 />
                 <InputField
                   label="Password"
                   type="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => {
+                    setPassword(e.target.value)
+                    setErrorMessage('');
+                  }}
                 />
                 <button
                   type="submit"
@@ -113,10 +113,15 @@ const Login = () => {
                   <h3 className="inline-flex items-center text-sm font-medium text-gray-600">
                     Don't have an account?&nbsp;
                     <a
-                      onClick={() => setIsSignUp(true)} // Show the signup form
+                      onClick={() => {
+                        setIsSignUp(true)
+                        setErrorMessage('');
+                        setUsername('');
+                        setPassword('');
+                      }} // Show the signup form
                       className="text-blue-500 underline cursor-pointer hover:text-green-600 transition"
                     >
-                      Sign In
+                      Sign Up
                     </a>
                   </h3>
                 </div>

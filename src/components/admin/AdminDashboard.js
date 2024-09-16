@@ -12,42 +12,42 @@ const AdminDashboard = () => {
     return (
         <div className="space-y-6">
             {/* First Row */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-9">
 
                 {/* Teacher Management Card */}
                 <div
                     onClick={() => navigate('/admin/teacher-management')}
-                    className="bg-white shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
+                    className="bg-blue-100 shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
                 >
                     <div className="flex justify-center mb-4">
-                        <GiTeacher style={{ width: '5rem', height: '5rem' }} />
+                        <GiTeacher style={{ width: '5rem', height: '5rem' }} className="text-blue-500" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Manage Teachers</h3>
-                    <p className="text-gray-500">Add, update, or remove teachers</p>
+                    <h3 className="text-lg font-semibold text-blue-700 mb-2">Manage Teachers</h3>
+                    <p className="text-blue-500">Add, update, or remove teachers</p>
                 </div>
 
                 {/* Class Management Card */}
                 <div
                     onClick={() => navigate('/admin/class-management')}
-                    className="bg-white shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
+                    className="bg-green-100 shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
                 >
                     <div className="flex justify-center mb-4">
-                        <FaBookOpenReader style={{ width: '5rem', height: '5rem' }} />
+                        <FaBookOpenReader style={{ width: '5rem', height: '5rem' }} className="text-green-500" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Manage Classes</h3>
-                    <p className="text-gray-500">Create, update, or view classes</p>
+                    <h3 className="text-lg font-semibold text-green-700 mb-2">Manage Classes</h3>
+                    <p className="text-green-500">Create, update, or view classes</p>
                 </div>
 
                 {/* Student Management Card */}
                 <div
                     onClick={() => navigate('/admin/student-management')}
-                    className="bg-white shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
+                    className="bg-yellow-100 shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
                 >
                     <div className="flex justify-center mb-4">
-                        <PiStudentFill style={{ width: '5rem', height: '5rem' }} />
+                        <PiStudentFill style={{ width: '5rem', height: '5rem' }} className="text-yellow-500" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-700 mb-2">Manage Students</h3>
-                    <p className="text-gray-500">Add, update, or remove students</p>
+                    <h3 className="text-lg font-semibold text-yellow-700 mb-2">Manage Students</h3>
+                    <p className="text-yellow-500">Add, update, or remove students</p>
                 </div>
             </div>
 
@@ -56,25 +56,25 @@ const AdminDashboard = () => {
                 {/* Income/Expense Analytics Card */}
                 <div
                     onClick={() => navigate('/admin/income-expense-analytics')}
-                    className="bg-white shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
+                    className="bg-purple-100 shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
                 >
                     <div className="flex justify-center mb-4">
-                        <TbDeviceAnalytics style={{ width: '5rem', height: '5rem' }} />
+                        <TbDeviceAnalytics style={{ width: '5rem', height: '5rem' }} className="text-purple-500" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-700 mb-2">View Income/Expense Analytics</h3>
-                    <p className="text-gray-500">Analyze financial reports</p>
+                    <h3 className="text-lg font-semibold text-purple-700 mb-2">View Income/Expense Analytics</h3>
+                    <p className="text-purple-500">Analyze financial reports</p>
                 </div>
 
                 {/* Student Analytics Card */}
                 <div
                     onClick={() => navigate('/admin/student-analytics')}
-                    className="bg-white shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
+                    className="bg-teal-100 shadow-lg rounded-lg cursor-pointer hover:shadow-xl transition-shadow duration-200 p-6 text-center"
                 >
                     <div className="flex justify-center mb-4">
-                        <DiGoogleAnalytics style={{ width: '5rem', height: '5rem' }} />
+                        <DiGoogleAnalytics style={{ width: '5rem', height: '5rem' }} className="text-teal-500" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-700 mb-2">View Student Analytics</h3>
-                    <p className="text-gray-500">Analyze student demographics</p>
+                    <h3 className="text-lg font-semibold text-teal-700 mb-2">View Student Analytics</h3>
+                    <p className="text-teal-500">Analyze student demographics</p>
                 </div>
             </div>
         </div>

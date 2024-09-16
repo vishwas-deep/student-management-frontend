@@ -31,7 +31,7 @@ const Table = ({ columns, data, onDelete, sortData }) => {
   }, [data, sortConfig]);
 
   return (
-    <div className="overflow-x-auto">
+    <div style={{ minHeight: '333px' }} className="overflow-x-auto">
       <table className="min-w-full bg-white border border-gray-200">
         <thead>
           <tr className="border-b bg-gray-100">

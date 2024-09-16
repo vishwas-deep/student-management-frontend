@@ -115,11 +115,11 @@ const ClassManagement = () => {
       <Header title="Class Management" goBackBtn={true} handleGoBack={handleGoBack} />
       <div className="p-6 flex flex-col lg:flex-row gap-6">
         <div className="flex-none lg:w-1/4 bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-4">Build Class Profile</h2>
+          <h5 className="font-bold mb-4 text-slate-600">Build Class Profile</h5>
           <Form model="class" fields={classFields} onSubmit={handleFormSubmit} />
         </div>
         <div className="flex-grow bg-white shadow-md rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-4">Class Data</h2>
+          <h5 className="text-slate-600 font-bold mb-4">Class Data</h5>
           <InputField
             label="Search by class name or teacher's name"
             type="text"

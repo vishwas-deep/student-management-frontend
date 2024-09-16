@@ -10,7 +10,7 @@ const Dashboard = ({ role }) => {
   const navigate = useNavigate();
 
   const handleProfileClick = () => {
-    navigate(`/${role}-profile`);
+    navigate(`/${role}/profile`);
   };
 
   const handleLogout = () => {
@@ -30,7 +30,7 @@ const Dashboard = ({ role }) => {
         onProfileClick={handleProfileClick}
         onLogout={handleLogout} // Pass logout handler to Header
       />
-      <main className="p-6">
+      <main className="p-16">
         {/* Admin Dashboard Content */}
         {role === 'admin' && <AdminDashboard />}
 
