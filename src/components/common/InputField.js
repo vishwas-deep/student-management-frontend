@@ -26,7 +26,7 @@ const InputField = ({ label, type = 'text', name, value, onChange, required = tr
             className="cursor-pointer block py-2.5 px-2 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-indigo-500 peer"
             required={required}
           >
-            <option value="" disabled>Gender</option>
+            <option value="" disabled>Select</option>
             {options.map((option, index) => (
               <option key={index} value={option}>
                 {option}
