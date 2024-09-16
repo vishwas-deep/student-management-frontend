@@ -4,10 +4,8 @@ import Header from './Header'; // Import the shared header
 import AdminDashboard from '../admin/AdminDashboard';
 import StudentDashboard from '../student/StudentDashboard';
 import TeacherDashboard from '../teacher/TeacherDashboard';
-import { useAuth } from '../../context/AuthContext';
 
 const Dashboard = ({ role }) => {
-  const { logout } = useAuth(); // Use the context to get the login function
 
   const navigate = useNavigate();
 
@@ -16,8 +14,14 @@ const Dashboard = ({ role }) => {
   };
 
   const handleLogout = () => {
-    logout()
+    // Clear authentication and role from localStorage
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('role');
+
+    // Redirect to login page or any other page
+    navigate('/'); // Assuming you have react-router for redirection
   };
+
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -28,13 +32,13 @@ const Dashboard = ({ role }) => {
       />
       <main className="p-6">
         {/* Admin Dashboard Content */}
-        {role === 'admin' && <AdminDashboard/>}
-        
+        {role === 'admin' && <AdminDashboard />}
+
         {/* Student Dashboard Content */}
-        {role === 'student' && <StudentDashboard/>}
+        {role === 'student' && <StudentDashboard />}
 
         {/* Teacher Dashboard Content */}
-        {role === 'teacher' && <TeacherDashboard/>}
+        {role === 'teacher' && <TeacherDashboard />}
       </main>
     </div>
   );

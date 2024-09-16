@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import InputField from './InputField';
 import AdminSignup from '../admin/AdminSignup';
-import { useAuth } from '../../context/AuthContext'; // Import the context
 
 const Login = () => {
   const { role } = useParams(); // Get the role (admin, student, teacher) from the URL
@@ -11,7 +10,6 @@ const Login = () => {
   const [isSignUp, setIsSignUp] = useState(false); // Toggle state between login and signup
   const navigate = useNavigate(); // For redirection
   const [errorMessage, setErrorMessage] = useState(''); // State for error message
-  const { login } = useAuth(); // Use the context to get the login function
 
   // Define credentials for each role
   const credentials = {
@@ -38,9 +36,12 @@ const Login = () => {
     setErrorMessage('');
     console.log(`Login as ${role} with`, { username, password });
 
+    // Save authentication state and role in localStorage
+    localStorage.setItem('isAuthenticated', 'true');
+    localStorage.setItem('role', role);
+
     // After successful login, redirect to dashboard
-    navigate(`/${role}-dashboard`);
-    login(role); // Update auth state and redirect
+    navigate(`/${role}/dashboard`);
 
   };
 
