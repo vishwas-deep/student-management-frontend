@@ -5,12 +5,14 @@ import Header from './Header'; // Import the shared header
 import { credentials } from '../../Credentials';
 import { CgProfile } from "react-icons/cg";
 
-const Profile = ({ role, data }) => {
+const Profile = ({ role }) => {
   const navigate = useNavigate(); // Initialize useNavigate
 
   const handleGoBack = () => {
     navigate(-1); // Go back to the previous page
   };
+
+  const data = credentials;
 
   return (
     <div className="min-h-screen bg-green-100">

@@ -26,7 +26,7 @@ function App() {
         {/* Protected routes */}
         <Route element={<ProtectedRoute />}>
           <Route path="/admin/dashboard" element={<Dashboard role="admin" />} />
-          <Route path="/admin/profile" element={<Profile role="admin" data={AdminProfileData} />} />
+          <Route path="/admin/profile" element={<Profile role="admin" />} />
           <Route path="/admin/class-management" element={<ClassManagement />} />
           <Route path="/admin/teacher-management" element={<TeacherManagement />} />
           <Route path="/admin/student-management" element={<StudentManagement />} />

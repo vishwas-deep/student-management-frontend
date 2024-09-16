@@ -29,7 +29,7 @@ const RoleSelection = () => {
         >
           <img src="/students.jpg" alt="Student" className="w-full h-48 object-contain rounded-md mb-4"/>
           <h3 className="text-xl font-bold text-slate-600">Login as Student</h3>
-          <p className='text-slate-500 text-sm'>Teacher have access to view their personal and class data</p>
+          <p className='text-slate-500 text-sm'>Student have access to view their personal and class data</p>
         </div>
 
         {/* Teacher Card */}
@@ -39,7 +39,7 @@ const RoleSelection = () => {
         >
           <img src="/teacher.jpg" alt="Teacher" className="w-full h-48 object-contain rounded-md mb-4"/>
           <h3 className="text-xl font-bold text-slate-600">Login as Teacher</h3>
-          <p className='text-slate-500 text-sm'>Student have access to view their personal and class data</p>
+          <p className='text-slate-500 text-sm'>Teacher have access to view their personal and class data</p>
         </div>
       </div>
     </div>
