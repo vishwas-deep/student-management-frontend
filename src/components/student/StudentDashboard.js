@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { BASE_URL } from '../../BASE_URL';
 
 const StudentDashboard = () => {
     const [students, setStudents] = useState([]);
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/students')
+        fetch(`${BASE_URL}api/students`)
             .then(response => response.json())
             .then(data => setStudents(data))
             .catch(error => console.error('Error fetching data:', error));

@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../common/Header';
 import InputField from '../common/InputField';
 import axios from 'axios';
+import { BASE_URL } from '../../BASE_URL';
 
 const TeacherManagement = () => {
   const [teachers, setTeachers] = useState([]);
@@ -15,7 +16,7 @@ const TeacherManagement = () => {
 
   useEffect(() => {
     // Fetch data from the server and set loading status
-    axios.get('http://localhost:5000/api/teachers')
+    axios.get(`${BASE_URL}api/teachers`)
       .then(response => {
         setTeachers(response.data);
         setLoading(false); // Data fetched, stop loading
@@ -51,7 +52,7 @@ const TeacherManagement = () => {
   ];
 
   const handleFormSubmit = (data) => {
-    axios.post('http://localhost:5000/api/teachers', data)
+    axios.post(`${BASE_URL}api/teachers`, data)
       .then(response => {
         setTeachers([response.data, ...teachers]);
       })
@@ -61,7 +62,7 @@ const TeacherManagement = () => {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/api/teachers/${id}`)
+    axios.delete(`${BASE_URL}api/teachers/${id}`)
       .then(() => {
         setTeachers(teachers.filter(teacher => teacher._id !== id));
       })

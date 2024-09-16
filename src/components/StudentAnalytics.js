@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import Header from './common/Header';
 import { useNavigate } from 'react-router-dom';
+import { BASE_URL } from '../BASE_URL';
 
 const StudentAnalyticsCard = () => {
     const [chartData, setChartData] = useState([]);
@@ -11,7 +12,7 @@ const StudentAnalyticsCard = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:5000/api/classes/analytics');
+                const response = await fetch(`${BASE_URL}api/classes/analytics`);
                 const data = await response.json();
 
                 // Transform the data for the chart

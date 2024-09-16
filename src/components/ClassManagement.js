@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from './common/Header';
 import InputField from './common/InputField';
 import axios from 'axios';
+import { BASE_URL } from '../BASE_URL';
 
 const ClassManagement = () => {
   // Dummy class data
@@ -19,7 +20,7 @@ const ClassManagement = () => {
 
   useEffect(() => {
     // Fetch data from the server
-    axios.get('http://localhost:5000/api/classes')
+    axios.get(`${BASE_URL}api/classes`)
       .then(response => {
         setClasses(response.data);
         setLoading(false); // Data fetched, stop loading
@@ -30,7 +31,7 @@ const ClassManagement = () => {
       });
 
     // Fetch teacher data from the server
-    axios.get('http://localhost:5000/api/teachers')
+    axios.get(`${BASE_URL}api/teachers`)
       .then(response => {
         setTeachers(response.data); // Set the fetched teacher data
       })
@@ -64,7 +65,7 @@ const ClassManagement = () => {
   ];
 
   const handleFormSubmit = (data) => {
-    axios.post('http://localhost:5000/api/classes', data)
+    axios.post(`${BASE_URL}api/classes`, data)
       .then(response => {
         setClasses([response.data, ...classes]);
       })
@@ -74,7 +75,7 @@ const ClassManagement = () => {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5000/api/classes/${id}`)
+    axios.delete(`${BASE_URL}api/classes/${id}`)
       .then(() => {
         setClasses(classes.filter(cls => cls._id !== id));
       })

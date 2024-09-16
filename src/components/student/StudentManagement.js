@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import Header from '../common/Header';
 import InputField from '../common/InputField';
 import axios from 'axios';
+import { BASE_URL } from '../../BASE_URL';
 
 const StudentManagement = () => {
   // Dummy student data
@@ -21,7 +22,7 @@ const StudentManagement = () => {
     // Fetch student data from the backend
     const fetchStudents = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/students');
+        const response = await fetch(`${BASE_URL}api/students`);
         const data = await response.json();
         setStudents(data);
         setLoading(false)
@@ -31,7 +32,7 @@ const StudentManagement = () => {
       }
     };
 
-    axios.get('http://localhost:5000/api/classes')
+    axios.get(`${BASE_URL}api/classes`)
       .then(response => {
         setClasses(response.data);
       })
@@ -79,7 +80,7 @@ const StudentManagement = () => {
     delete transformedData.class;
 
     try {
-      const response = await fetch('http://localhost:5000/api/students', {
+      const response = await fetch(`${BASE_URL}api/students`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -95,7 +96,7 @@ const StudentManagement = () => {
 
   const handleDelete = async (id) => {
     try {
-      await fetch(`http://localhost:5000/api/students/${id}`, {
+      await fetch(`${BASE_URL}api/students/${id}`, {
         method: 'DELETE',
       });
       setStudents(students.filter(student => student._id !== id));
