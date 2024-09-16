@@ -50,33 +50,33 @@ const Login = () => {
   };
 
   return (
-    <div className="flex min-h-screen">
+    <div className="flex min-h-screen h-screen overflow-hidden">
       {/* Left side image */}
-      <div className="w-1/2">
+      <div className="w-1/2 h-full">
         <img src="/login.jpg" alt="Login" className="object-cover w-full h-full" />
       </div>
 
       {/* Right side login form */}
-      <div className="w-1/2 flex flex-col justify-center items-center bg-white-100">
+      <div className="w-1/2 flex flex-col justify-center items-center bg-white-100 h-full">
         {/* Banner message for admin login */}
         {!isSignUp && (
-          <div className="bg-slate-100 text-slate-500 p-3 rounded-lg shadow-md w-full max-w-lg text-center mb-2">
-            <p className='flex justify-between'>
-              <span className="font-bold">Username:
-                <span className="font-semibold"> {credentials[role]?.username}</span>
+          <div className="bg-slate-100 text-slate-500 p-2 rounded-lg shadow-md w-full max-w-xs text-center mb-2">
+            <p className="flex flex-col justify-between text-sm font-normal">
+              <span>
+                <strong className="font-medium">Username:</strong> {credentials[role]?.username}
               </span>
-              <span className="font-bold">Password:
-                <span className="font-semibold"> {credentials[role]?.password}</span>
+              <span>
+                <strong className="font-medium">Password:</strong> {credentials[role]?.password}
               </span>
             </p>
           </div>
         )}
 
         {/* Login Card */}
-        <div className="p-8 bg-slate-50 shadow-lg shadow-indigo-500/40 rounded-lg w-full max-w-lg">
+        <div className="p-6 bg-slate-50 shadow-lg shadow-indigo-500/40 rounded-lg w-full max-w-xs">
           {!isSignUp ? (
             <>
-              <h2 className="text-2xl font-bold mb-6 text-center">
+              <h2 className="text-2xl font-bold mb-4 text-center">
                 {role === 'admin' ? 'Admin Login' : role === 'student' ? 'Student Login' : 'Teacher Login'}
               </h2>
               <form onSubmit={handleLogin}>
@@ -120,7 +120,6 @@ const Login = () => {
                   </h3>
                 </div>
               )}
-
             </>
           ) : (
             // Render the AdminSignup component

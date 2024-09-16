@@ -8,7 +8,7 @@ const InputField = ({ label, type = 'text', name, value, onChange, required = tr
           name={name}
           value={value}
           onChange={onChange}
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-500 peer"
+          className="block py-2.5 px-2 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-indigo-500 peer"
           required={required}
         >
           <option value="" disabled>Select {label}</option>
@@ -20,18 +20,18 @@ const InputField = ({ label, type = 'text', name, value, onChange, required = tr
         </select>
       ) : (
         <input
-         autocomplete="off"
+          autoComplete="off"
           type={type}
           name={name}
           value={value}
           onChange={onChange}
-          className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none focus:outline-none focus:ring-0 focus:border-indigo-500 peer"
+          className="block py-2.5 px-2 w-full text-sm text-gray-900 bg-transparent border border-gray-300 rounded-md appearance-none focus:outline-none focus:ring-0 focus:border-indigo-500 peer"
           placeholder=" "
           required={required}
         />
       )}
       <label
-        className="absolute text-sm text-gray-500 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+        className="absolute text-sm text-gray-500 duration-300 transform -translate-y-1/2 scale-75 top-0 left-2 px-2 bg-white origin-[0] peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-3 peer-focus:scale-75 peer-focus:-translate-y-1/2 peer-focus:px-2 peer-focus:bg-white"
       >
         {label}
       </label>
