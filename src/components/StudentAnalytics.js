@@ -58,7 +58,7 @@ const StudentAnalyticsCard = () => {
                             />
                             <YAxis label={{ value: 'Number of Students', angle: -90, position: 'insideLeft' }} />
                             <Tooltip />
-                            <Legend />
+                            <Legend verticalAlign="top"/>
                             <Bar dataKey="Male" fill="#90CAF9" barSize={30} />
                             <Bar dataKey="Female" fill="#F48FB1" barSize={30} />
                         </BarChart>

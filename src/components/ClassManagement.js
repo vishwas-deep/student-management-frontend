@@ -10,6 +10,7 @@ const ClassManagement = () => {
   // Dummy class data
   const [classes, setClasses] = useState([]);
   const [teachers, setTeachers] = useState([]); // New state for teachers
+  const [loading, setLoading] = useState(true); // Loading state
 
   const [searchQuery, setSearchQuery] = useState(''); // New state for search query
 
@@ -21,9 +22,11 @@ const ClassManagement = () => {
     axios.get('http://localhost:5000/api/classes')
       .then(response => {
         setClasses(response.data);
+        setLoading(false); // Data fetched, stop loading
       })
       .catch(error => {
         console.error('Error fetching data:', error);
+        setLoading(false); // Data fetched, stop loading
       });
 
     // Fetch teacher data from the server
@@ -132,6 +135,7 @@ const ClassManagement = () => {
             data={currentClasses}
             onDelete={handleDelete}
             sortData={sortData}
+            loading={loading}
           />
           <div className="flex justify-between items-center mt-4">
             <button

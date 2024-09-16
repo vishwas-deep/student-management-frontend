@@ -9,6 +9,7 @@ import axios from 'axios';
 const StudentManagement = () => {
   // Dummy student data
   const [classes, setClasses] = useState([]);
+  const [loading, setLoading] = useState(true); // Loading state
 
   const [students, setStudents] = useState([]);
   const [searchQuery, setSearchQuery] = useState(''); // State for search query
@@ -23,8 +24,10 @@ const StudentManagement = () => {
         const response = await fetch('http://localhost:5000/api/students');
         const data = await response.json();
         setStudents(data);
+        setLoading(false)
       } catch (error) {
         console.error('Error fetching student data:', error);
+        setLoading(false)
       }
     };
 
@@ -151,6 +154,7 @@ const StudentManagement = () => {
             data={currentStudents}
             onDelete={handleDelete}
             sortData={sortData}
+            loading={loading}
           />
           <div className="flex justify-between items-center mt-4">
             <button

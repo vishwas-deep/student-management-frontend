@@ -7,27 +7,28 @@ import InputField from '../common/InputField';
 import axios from 'axios';
 
 const TeacherManagement = () => {
-  // Dummy teacher data
   const [teachers, setTeachers] = useState([]);
-
-  const [searchQuery, setSearchQuery] = useState(''); // New search query state
-
+  const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
+  const [loading, setLoading] = useState(true); // Loading state
   const teachersPerPage = 5;
 
   useEffect(() => {
-    // Fetch data from the server
+    // Fetch data from the server and set loading status
     axios.get('http://localhost:5000/api/teachers')
       .then(response => {
         setTeachers(response.data);
+        setLoading(false); // Data fetched, stop loading
       })
       .catch(error => {
         console.error('Error fetching data:', error);
+        setLoading(false); // Stop loading even on error
       });
   }, []);
 
   // Calculate the number of pages
   const totalPages = Math.ceil(teachers.length / teachersPerPage);
+  
   // Filter teachers based on the search query
   const filteredTeachers = teachers.filter((teacher) =>
     teacher.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -47,7 +48,6 @@ const TeacherManagement = () => {
     { name: 'dob', label: 'Date of Birth', type: 'date' },
     { name: 'contactDetails', label: 'Contact Details', type: 'text' },
     { name: 'salary', label: 'Salary', type: 'number' },
-    // { name: 'assignedClasses', label: 'Assigned Class', type: 'select', options: Array.from({ length: 12 }, (_, i) => `Class ${i + 1}`) },
   ];
 
   const handleFormSubmit = (data) => {
@@ -100,20 +100,17 @@ const TeacherManagement = () => {
     setTeachers(sortedTeachers);
   };
 
-
   return (
     <div className="bg-gray-50 min-h-screen">
       <Header title="Teacher Management" goBackBtn={true} handleGoBack={handleGoBack} />
       <div className="p-6 flex flex-col lg:flex-row gap-6">
         <div className="flex-none lg:w-1/4 bg-white shadow-md rounded-lg p-6">
-          {/* Heading for the form */}
           <h5 className="font-bold mb-4 text-slate-600">Build Teacher's Profile</h5>
           <Form model="teacher" fields={teacherFields} onSubmit={handleFormSubmit} />
         </div>
         <div className="flex-grow bg-white shadow-md rounded-lg p-6">
-          {/* Heading for the table */}
           <h5 className="text-slate-600 font-bold mb-4">Teacher's Data</h5>
-          {/* Search Input */}
+
           <InputField
             label="Search by teacher's name"
             type="text"
@@ -122,33 +119,33 @@ const TeacherManagement = () => {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
 
-          <Table
-            columns={['name', 'gender', 'dob', 'contactDetails', 'salary']}
-            data={currentTeachers}
-            onDelete={handleDelete}
-            sortData={sortData}
-          />
+              <Table
+                columns={['name', 'gender', 'dob', 'contactDetails', 'salary']}
+                data={currentTeachers}
+                onDelete={handleDelete}
+                sortData={sortData}
+                loading={loading}
+              />
 
-          {/* Pagination */}
-          <div className="flex justify-between items-center mt-4">
-            <button
-              className={`px-4 py-2 bg-blue-500 text-white rounded ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
-              onClick={handlePreviousPage}
-              disabled={currentPage === 1}
-            >
-              Previous
-            </button>
-            <span>
-              Page {currentPage} of {totalPages}
-            </span>
-            <button
-              className={`px-4 py-2 bg-blue-500 text-white rounded ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-            >
-              Next
-            </button>
-          </div>
+              <div className="flex justify-between items-center mt-4">
+                <button
+                  className={`px-4 py-2 bg-blue-500 text-white rounded ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  onClick={handlePreviousPage}
+                  disabled={currentPage === 1}
+                >
+                  Previous
+                </button>
+                <span>
+                  Page {currentPage} of {totalPages}
+                </span>
+                <button
+                  className={`px-4 py-2 bg-blue-500 text-white rounded ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''}`}
+                  onClick={handleNextPage}
+                  disabled={currentPage === totalPages}
+                >
+                  Next
+                </button>
+              </div>
         </div>
       </div>
     </div>
